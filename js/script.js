@@ -12,18 +12,43 @@ $("#search-button").click(function(){
 $(".text-center").empty();
 
 
-  $.ajax({
+
+var search_result = $("#search-term").val();
+
+function appendImageToBody(url){
     
-   
-        url: "https://api.giphy.com/v1/gifs/search?q=puppy&rating=pg&api_key=dc6zaTOxFJmzC",
+ $(".text-center").append("<img src='" + url + "' </img>");
+    
+    
+}
+
+
+ $.ajax({
+    
+    
+           url: "https://api.giphy.com/v1/stickers/search?q=" + search_result + "&api_key=9YREYmTHv7TEpu4y9F47gSIW5P3jROLi",
         method: "GET",
         success: function(response) {
+            var url = response.data[0].images.original.url;
             
-             $(".text-center").append("<img src='" + response.data[0].images.original_still.url + "' </img>");
-            console.log(response.data[0].images.original_still.url);
+  
+            appendImageToBody(url);
 
         }   
     }); 
+
+//   $.ajax({
+    
+   
+//         url: "https://api.giphy.com/v1/gifs/search?q=puppy&rating=pg&api_key=dc6zaTOxFJmzC",
+//         method: "GET",
+//         success: function(response) {
+            
+//              $(".text-center").append("<img src='" + response.data[0].images.original_still.url + "' </img>");
+//             console.log(response.data[0].images.original_still.url);
+
+//         }   
+//     }); 
   
 });
 
