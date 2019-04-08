@@ -21,21 +21,19 @@ function appendImageToBody(url){
     
 }
 
-var i = 0 ;
+var randomNumber = Math.floor(Math.random() * 26);
 
  $.ajax({
            url: "https://api.giphy.com/v1/stickers/search?q=" + search_result + "&api_key=9YREYmTHv7TEpu4y9F47gSIW5P3jROLi",
         method: "GET",
         success: function(response) {
             
-            var url = response.data[i].images.original.url;
+            var url = response.data[randomNumber].images.original.url;
             
-  
             appendImageToBody(url);
         }   
     }); 
     
-   i = i++;
 });
 
 
